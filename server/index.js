@@ -53,15 +53,15 @@ const schema = buildSchema(`
     name: String
   }
 
-  type Attack {
+  type AttackObj {
     name: String
     type: String
     damage: Int
   }
   
   type Attacks {
-    fast: [Attack]
-    special: [Attack]
+    fast: [AttackObj]
+    special: [AttackObj]
   }
 
   type Query {
@@ -69,6 +69,7 @@ const schema = buildSchema(`
     getPokemonByName(name: String!): Pokemon
     getPokemonById(id: String!): Pokemon
     Attacks: Attacks
+    attackByType(byType: String): AttackObj
     Types: [String]
   }
 `);
@@ -77,6 +78,11 @@ const schema = buildSchema(`
 const root = {
   Attacks: () => {
     return data.attacks;
+  },
+
+  attackByType: (input) => {
+    console.log(input.byType, typeof input, "*********");
+    return data.attacks[input.byType];
   },
 
   Types: () => {
