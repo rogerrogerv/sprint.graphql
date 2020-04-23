@@ -62,10 +62,6 @@ const schema = buildSchema(`
     getPokemonByType(type: String!): [Pokemon]
     getPokemonByAttack(name: String!): [Pokemon]
     Attacks: Attacks
-<<<<<<< HEAD
-    attackByType(byType: String): AttackObj
-    Types: [String]
-=======
     AttackByType(type: String): [AttackObj]
     Types: [String]  
   }
@@ -101,7 +97,6 @@ const schema = buildSchema(`
     createType(input: newType): String
     updateType(input: newType, nameID: String): String
     deleteType(input: String): String
->>>>>>> ced8d5eb6fbd61953f63264d11925b066ae3a0e2
   }
 
 `);
@@ -182,14 +177,8 @@ const root = {
     return data.attacks;
   },
 
-<<<<<<< HEAD
-  attackByType: (input) => {
-    console.log(input.byType, typeof input, "*********");
-    return data.attacks[input.byType];
-=======
   AttackByType: (req) => {
     return data.attacks[req.type];
->>>>>>> ced8d5eb6fbd61953f63264d11925b066ae3a0e2
   },
 
   Types: () => {
