@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const { buildSchema } = require("graphql");
@@ -104,13 +105,13 @@ const schema = buildSchema(`
 // The root provides the resolver functions for each type of query or mutation.
 const root = {
   deleteType: (response) => {
-    index = data.types.indexOf(response.input);
+    let index = data.types.indexOf(response.input);
     delete data.types[index];
     return data.types;
   },
 
   updateType: (response) => {
-    index = data.types.indexOf(response.nameID);
+    let index = data.types.indexOf(response.nameID);
     data.types[index] = response.input.name;
     return data.types;
   },
@@ -161,14 +162,14 @@ const root = {
   },
 
   updatePokemon: (response) => {
-    index = data.pokemon.findIndex((pokemon) => pokemon.id === response.id);
+    let index = data.pokemon.findIndex((pokemon) => pokemon.id === response.id);
     data.pokemon[index].name = response.input.name;
     return data.pokemon;
   },
 
   deletePokemon: (response) => {
     // takes an id and deletes the pokemon in the array of objects
-    index = data.pokemon.findIndex((pokemon) => pokemon.id === response.id);
+    let index = data.pokemon.findIndex((pokemon) => pokemon.id === response.id);
     delete data.pokemon[index];
     return data.pokemon;
   },
